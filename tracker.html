@@ -1,170 +1,444 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Vindictus Scavenger Hunt Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     :root {
-      --bg: #100905;
-      --panel: #21140c;
-      --panel-2: #2c1b10;
+      --bg: #120b07;
+      --panel: #24160d;
+      --panel-light: #332014;
       --gold: #d8a640;
-      --gold-light: #f3d37a;
+      --gold-light: #f2d27a;
       --red: #8f1d14;
-      --text: #f7ecd7;
+      --text: #f6ead2;
       --muted: #c8b28a;
-      --border: #70491d;
-      --good: #62b36a;
-      --bad: #e16b5c;
+      --border: #6e4a1e;
     }
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      min-height: 100vh;
-      color: var(--text);
-      font-family: Georgia, 'Times New Roman', serif;
       background:
-        radial-gradient(circle at top left, rgba(216,166,64,.18), transparent 34rem),
-        radial-gradient(circle at top right, rgba(143,29,20,.18), transparent 35rem),
-        linear-gradient(180deg, #1a0e08 0%, #070403 100%);
+        radial-gradient(circle at top, rgba(216, 166, 64, 0.14), transparent 35%),
+        linear-gradient(180deg, #1c0f08 0%, #090604 100%);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      min-height: 100vh;
     }
-    .page { width: 100%; padding: 22px; }
+
+    .page {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 24px;
+    }
+
     .hero {
       border: 2px solid var(--border);
-      background: linear-gradient(135deg, rgba(143,29,20,.35), rgba(33,20,12,.96));
+      background:
+        linear-gradient(135deg, rgba(143, 29, 20, 0.35), rgba(36, 22, 13, 0.97)),
+        var(--panel);
       border-radius: 18px;
       padding: 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
       text-align: center;
-      box-shadow: 0 18px 55px rgba(0,0,0,.45);
-      margin-bottom: 18px;
+      margin-bottom: 24px;
     }
-    h1 { margin: 0; color: var(--gold-light); font-size: clamp(2rem, 4vw, 4rem); text-shadow: 0 3px 10px #000; }
-    .subtitle { color: var(--muted); margin-top: 8px; font-size: 1.15rem; }
-    .stats { display: grid; grid-template-columns: repeat(4, minmax(140px, 1fr)); gap: 14px; margin: 18px 0; }
-    .stat { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 16px; text-align: center; }
-    .label { color: var(--muted); text-transform: uppercase; letter-spacing: .08em; font-size: .8rem; }
-    .value { color: var(--gold-light); font-size: 1.75rem; font-weight: bold; margin-top: 6px; }
-    .controls { display: flex; justify-content: space-between; gap: 12px; align-items: center; flex-wrap: wrap; margin: 18px 0; }
-    button { background: linear-gradient(180deg, var(--gold-light), var(--gold)); border: 1px solid #77531b; color: #211207; font-weight: bold; border-radius: 10px; padding: 10px 16px; cursor: pointer; font-family: inherit; }
-    .last { color: var(--muted); }
-    .leaderboard { display: grid; gap: 14px; }
-    .team { background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.16)), var(--panel); border: 1px solid var(--border); border-radius: 18px; padding: 18px; box-shadow: 0 12px 35px rgba(0,0,0,.33); }
-    .team-header { display: grid; grid-template-columns: 54px 1fr auto; gap: 14px; align-items: center; }
-    .rank { width: 48px; height: 48px; border-radius: 999px; display: flex; align-items: center; justify-content: center; background: var(--panel-2); border: 2px solid var(--gold); color: var(--gold-light); font-size: 1.4rem; font-weight: bold; }
-    .team-name { color: var(--gold-light); font-size: 1.55rem; font-weight: bold; }
-    .players { color: var(--muted); margin-top: 3px; }
-    .score { text-align: right; }
-    .points { color: var(--gold-light); font-size: 2rem; font-weight: bold; }
-    .completed { color: var(--muted); }
-    .bar-wrap { margin-top: 14px; height: 14px; background: #0b0604; border: 1px solid var(--border); border-radius: 999px; overflow: hidden; }
-    .bar { height: 100%; background: linear-gradient(90deg, var(--red), var(--gold)); width: 0; transition: width .45s ease; }
-    .details { margin-top: 12px; display: none; border-top: 1px solid rgba(216,166,64,.28); padding-top: 10px; }
-    .team.open .details { display: block; }
-    .challenge { display: grid; grid-template-columns: 100px 1fr 90px; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
-    .tier, .challenge-points { color: var(--gold-light); font-weight: bold; }
-    .empty, .error { background: rgba(0,0,0,.22); border: 1px dashed var(--border); border-radius: 14px; padding: 22px; color: var(--muted); }
-    .error { color: #ffd6d0; border-color: var(--bad); white-space: pre-wrap; }
-    .hint { font-size: .9rem; color: var(--muted); margin-top: 12px; line-height: 1.45; }
-    code { color: var(--gold-light); }
-    @media (max-width: 760px) {
-      .stats { grid-template-columns: repeat(2, minmax(130px, 1fr)); }
-      .team-header { grid-template-columns: 54px 1fr; }
-      .score { grid-column: 1 / -1; text-align: left; }
-      .challenge { grid-template-columns: 1fr; }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(32px, 4vw, 56px);
+      color: var(--gold-light);
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+
+    .hero p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+      min-height: 90px;
+    }
+
+    .stat .label {
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .stat .value {
+      font-size: 26px;
+      color: var(--gold-light);
+      margin-top: 6px;
+      font-weight: bold;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .last-updated {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    button {
+      background: linear-gradient(180deg, var(--gold-light), var(--gold));
+      color: #271507;
+      border: 1px solid #7c571d;
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    button:hover {
+      filter: brightness(1.1);
+    }
+
+    .leaderboard {
+      display: grid;
+      gap: 16px;
+    }
+
+    .team-card {
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.12)),
+        var(--panel);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+      cursor: pointer;
+    }
+
+    .team-header {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .rank {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--panel-light);
+      border: 2px solid var(--gold);
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .team-name {
+      font-size: 25px;
+      color: var(--gold-light);
+      font-weight: bold;
+    }
+
+    .players {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    .score {
+      text-align: right;
+    }
+
+    .score .points {
+      font-size: 32px;
+      color: var(--gold-light);
+      font-weight: bold;
+    }
+
+    .score .completed {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .bar-wrap {
+      height: 14px;
+      background: #100905;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 14px;
+    }
+
+    .bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+      width: 0%;
+      transition: width 0.6s ease;
+    }
+
+    .challenge-list {
+      margin-top: 14px;
+      display: none;
+      border-top: 1px solid rgba(216, 166, 64, 0.3);
+      padding-top: 12px;
+    }
+
+    .team-card.open .challenge-list {
+      display: block;
+    }
+
+    .challenge {
+      display: grid;
+      grid-template-columns: 90px 80px 1fr auto;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .challenge:last-child {
+      border-bottom: none;
+    }
+
+    .tier {
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+    .challenge-id {
+      color: var(--muted);
+    }
+
+    .challenge-name {
+      color: var(--text);
+    }
+
+    .challenge-points {
+      color: var(--gold-light);
+      font-weight: bold;
+    }
+
+    .empty {
+      text-align: center;
+      color: var(--muted);
+      padding: 30px;
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+      background: rgba(0,0,0,0.15);
+      white-space: pre-wrap;
+    }
+
+    @media (max-width: 1000px) {
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      .page {
+        padding: 14px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .team-header {
+        grid-template-columns: auto 1fr;
+      }
+
+      .score {
+        grid-column: 1 / -1;
+        text-align: left;
+      }
+
+      .challenge {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
-  <main class="page">
+  <div class="page">
     <section class="hero">
       <h1>Vindictus Scavenger Hunt</h1>
-      <div class="subtitle">Nightslayer PvP • Teams of 3 • Live Progress Tracker</div>
+      <p>Nightslayer PvP • Teams of 5 • Live Progress Tracker</p>
     </section>
 
     <section class="stats">
-      <div class="stat"><div class="label">Teams</div><div class="value" id="teamCount">—</div></div>
-      <div class="stat"><div class="label">Challenges</div><div class="value" id="challengeCount">—</div></div>
-      <div class="stat"><div class="label">Available Points</div><div class="value" id="availablePoints">—</div></div>
-      <div class="stat"><div class="label">Leader</div><div class="value" id="leaderName">—</div></div>
+      <div class="stat">
+        <div class="label">Teams</div>
+        <div class="value" id="teamCount">—</div>
+      </div>
+      <div class="stat">
+        <div class="label">Team Size</div>
+        <div class="value" id="teamSize">5</div>
+      </div>
+      <div class="stat">
+        <div class="label">Challenges</div>
+        <div class="value" id="challengeCount">—</div>
+      </div>
+      <div class="stat">
+        <div class="label">Available Points</div>
+        <div class="value" id="availablePoints">—</div>
+      </div>
+      <div class="stat">
+        <div class="label">Leader</div>
+        <div class="value" id="leaderName">—</div>
+      </div>
     </section>
 
     <div class="controls">
-      <div class="last" id="lastUpdated">Loading tracker...</div>
+      <div class="last-updated" id="lastUpdated">Loading tracker...</div>
       <button onclick="loadData()">Refresh Tracker</button>
     </div>
 
-    <section class="leaderboard" id="leaderboard"><div class="empty">Loading team progress...</div></section>
-  </main>
+    <section class="leaderboard" id="leaderboard">
+      <div class="empty">Loading team progress...</div>
+    </section>
+  </div>
 
   <script>
-    const DATA_URL = 'https://script.google.com/macros/s/AKfycbxOJevLhtNOY6iTwDuGYH0MY2oobzodVT4XER1QSYGmafpF0YJr-tYtIG8gF2XhwLb5Dw/exec?action=data';
+    const DATA_URL = 'https://script.google.com/macros/s/AKfycbxVHpKqV4_yZrw05dAwwcnf8TNKo10OgYLVaz66AwvrGcFFJK8IpYyOze0eTc0yp6WTng/exec?action=data';
 
     async function loadData() {
       const leaderboard = document.getElementById('leaderboard');
       leaderboard.innerHTML = '<div class="empty">Loading team progress...</div>';
+
       try {
-        const url = DATA_URL + '&cacheBust=' + Date.now();
-        const response = await fetch(url, { method: 'GET', cache: 'no-store', redirect: 'follow' });
+        const response = await fetch(DATA_URL + '&cacheBust=' + Date.now());
+
+        if (!response.ok) {
+          throw new Error('HTTP ' + response.status + ': ' + response.statusText);
+        }
+
         const text = await response.text();
         let data;
+
         try {
           data = JSON.parse(text);
         } catch (jsonError) {
-          throw new Error('The Apps Script URL did not return JSON. It returned:\n\n' + text.slice(0, 700));
+          throw new Error('The backend did not return valid JSON.\n\nReturned text:\n' + text.slice(0, 600));
         }
+
         if (data.status === 'error') {
-          throw new Error('Apps Script backend error:\n' + (data.message || 'Unknown error') + '\n\n' + (data.stack || ''));
+          throw new Error(data.message || 'Apps Script returned an error.');
         }
+
         renderTracker(data);
       } catch (error) {
-        leaderboard.innerHTML = '<div class="error"><strong>Could not load tracker data.</strong>\n\n' + escapeHtml(error.message) + '\n\nCheck: Apps Script deployment access is “Anyone with the link,” the latest version is deployed, and the URL opens with ?action=data.</div>';
-        document.getElementById('lastUpdated').textContent = 'Tracker failed to load.';
+        leaderboard.innerHTML = '<div class="empty">Could not load tracker data.\n\n' + escapeHtml(error.message) + '</div>';
         console.error(error);
       }
     }
 
     function renderTracker(data) {
       const teams = Array.isArray(data.teams) ? data.teams : [];
+
       document.getElementById('teamCount').textContent = teams.length;
-      document.getElementById('challengeCount').textContent = data.totalChallenges ?? '—';
-      document.getElementById('availablePoints').textContent = data.totalAvailablePoints ?? '—';
-      document.getElementById('leaderName').textContent = teams[0]?.teamName || '—';
-      document.getElementById('lastUpdated').textContent = 'Last updated: ' + (data.lastUpdated || new Date().toLocaleString());
+      document.getElementById('teamSize').textContent = data.teamSize || 5;
+      document.getElementById('challengeCount').textContent = data.totalChallenges || 0;
+      document.getElementById('availablePoints').textContent = data.totalAvailablePoints || 0;
+      document.getElementById('leaderName').textContent = teams[0] ? teams[0].teamName : '—';
+      document.getElementById('lastUpdated').textContent = 'Last updated: ' + (data.lastUpdated || '—');
 
       const leaderboard = document.getElementById('leaderboard');
+
       if (!teams.length) {
-        leaderboard.innerHTML = '<div class="empty">No active teams found. Add team names on the Teams tab.</div>';
+        leaderboard.innerHTML = '<div class="empty">No teams have been added yet.</div>';
         return;
       }
+
       leaderboard.innerHTML = teams.map((team, index) => {
-        const totalAvailable = Number(data.totalAvailablePoints) || 1;
-        const pct = Math.min(100, Math.round((Number(team.totalPoints || 0) / totalAvailable) * 100));
-        const completed = Array.isArray(team.completedChallenges) ? team.completedChallenges : [];
-        const completedHtml = completed.length ? completed.map(ch => `
-          <div class="challenge">
-            <div class="tier">${escapeHtml(ch.tier || '—')}</div>
-            <div>${escapeHtml('#' + ch.challengeId + ' — ' + ch.name)}</div>
-            <div class="challenge-points">${Number(ch.points || 0)} pts</div>
-          </div>
-        `).join('') : '<div class="empty">No completed challenges yet.</div>';
+        const progressPercent = data.totalAvailablePoints > 0
+          ? Math.min(100, Math.round((team.totalPoints / data.totalAvailablePoints) * 100))
+          : 0;
+
+        const completedChallenges = Array.isArray(team.completedChallenges) ? team.completedChallenges : [];
+
+        const completedHtml = completedChallenges.length
+          ? completedChallenges.map(challenge => `
+              <div class="challenge">
+                <div class="tier">${escapeHtml(challenge.tier)}</div>
+                <div class="challenge-id">#${escapeHtml(challenge.challengeId)}</div>
+                <div class="challenge-name">${escapeHtml(challenge.name)}</div>
+                <div class="challenge-points">${escapeHtml(challenge.points)} pts</div>
+              </div>
+            `).join('')
+          : '<div class="empty">No completed challenges yet.</div>';
+
+        const players = Array.isArray(team.players) && team.players.length
+          ? team.players.map(escapeHtml).join(' • ')
+          : 'No players listed';
 
         return `
-          <article class="team" onclick="this.classList.toggle('open')">
+          <article class="team-card" onclick="toggleCard(this)">
             <div class="team-header">
               <div class="rank">${index + 1}</div>
-              <div><div class="team-name">${escapeHtml(team.teamName)}</div><div class="players">${(team.players || []).map(escapeHtml).join(' • ')}</div></div>
-              <div class="score"><div class="points">${Number(team.totalPoints || 0)}</div><div class="completed">${Number(team.completedCount || 0)} completed</div></div>
+              <div>
+                <div class="team-name">${escapeHtml(team.teamName)}</div>
+                <div class="players">${players}</div>
+              </div>
+              <div class="score">
+                <div class="points">${escapeHtml(team.totalPoints || 0)}</div>
+                <div class="completed">${escapeHtml(team.completedCount || 0)} completed</div>
+              </div>
             </div>
-            <div class="bar-wrap"><div class="bar" style="width:${pct}%"></div></div>
-            <div class="details">${completedHtml}<div class="hint">Click the team card to collapse/expand completed challenges.</div></div>
+
+            <div class="bar-wrap">
+              <div class="bar" style="width:${progressPercent}%"></div>
+            </div>
+
+            <div class="challenge-list">
+              ${completedHtml}
+            </div>
           </article>
         `;
       }).join('');
     }
 
+    function toggleCard(card) {
+      card.classList.toggle('open');
+    }
+
     function escapeHtml(value) {
-      return String(value ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+      return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
     }
 
     loadData();

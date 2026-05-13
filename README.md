@@ -1,11 +1,19 @@
-# Vindictus Scavenger Hunt GitHub Pages Package
+# Vindictus Scavenger Hunt Tracker
 
-Upload these files to your GitHub Pages repository.
+This package contains a configured `tracker.html` for the Teams of 5 tracker.
 
-- `index.html` — landing page
-- `clues.html` — player clue page
-- `tracker.html` — live tracker connected to the provided Apps Script backend
+Apps Script URL used:
 
-The tracker is configured to use:
+https://script.google.com/macros/s/AKfycbxVHpKqV4_yZrw05dAwwcnf8TNKo10OgYLVaz66AwvrGcFFJK8IpYyOze0eTc0yp6WTng/exec
 
-`https://script.google.com/macros/s/AKfycbxOJevLhtNOY6iTwDuGYH0MY2oobzodVT4XER1QSYGmafpF0YJr-tYtIG8gF2XhwLb5Dw/exec?action=data`
+## Upload
+
+Replace your existing `tracker.html` in GitHub with this version.
+
+## Test
+
+Open the Apps Script data URL directly:
+
+https://script.google.com/macros/s/AKfycbxVHpKqV4_yZrw05dAwwcnf8TNKo10OgYLVaz66AwvrGcFFJK8IpYyOze0eTc0yp6WTng/exec?action=data
+
+It should return JSON starting with `"status":"ok"`.
