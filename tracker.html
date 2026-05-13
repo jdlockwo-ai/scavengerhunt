@@ -96,7 +96,7 @@
   <script>
     // IMPORTANT: Replace this with your deployed Apps Script Web App URL.
     // Example: const DATA_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec?action=data';
-    const DATA_URL = 'https://script.google.com/macros/library/d/1BINRE-slRtv5pe86WQ-5YmfJ7JSwauyS4LiBmjWRmLfAS8Yo9Hevq7Sw/1';
+    const DATA_URL = 'https://script.google.com/macros/s/AKfycbzyl_u5jbO8yn1ZmZJUf1P2w62lbdncjNeSarK7KdUdJEbmLbhCGhiEyiQ62GMTfe8Y/exec?action=data';
 
     async function loadData() {
       const leaderboard = document.getElementById('leaderboard');
@@ -106,7 +106,7 @@
         const data = await response.json();
         renderTracker(data);
       } catch (error) {
-        leaderboard.innerHTML = '<div class="empty">Could not load tracker data. Make sure DATA_URL is set in tracker.html.</div>';
+        leaderboard.innerHTML = '<div class="empty">Could not load tracker data. Check the Apps Script deployment permissions and try refreshing.</div>';
         console.error(error);
       }
     }

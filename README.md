@@ -13,7 +13,7 @@ Upload these files to a GitHub repository and enable GitHub Pages.
 Before publishing, open `tracker.html` and replace:
 
 ```js
-const DATA_URL = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE?action=data';
+const DATA_URL = 'https://script.google.com/macros/s/AKfycbzyl_u5jbO8yn1ZmZJUf1P2w62lbdncjNeSarK7KdUdJEbmLbhCGhiEyiQ62GMTfe8Y/exec?action=data';
 ```
 
 with your deployed Google Apps Script web app URL, for example:
@@ -34,3 +34,6 @@ const DATA_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec?act
 Your site will load at a URL like:
 
 `https://yourusername.github.io/repository-name/`
+
+
+Tracker URL configured for the provided Apps Script deployment.
