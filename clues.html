@@ -1,611 +1,869 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vindictus Scavenger Hunt — Clue List</title>
+  <meta charset="UTF-8">
+  <title>Vindictus Scavenger Hunt Clues</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     :root {
-      --horde-red:#7A1010;
-      --horde-red-dark:#4a0707;
-      --fel-green:#64B33A;
-      --parchment:#F3E3BC;
-      --bone:#FFF6D8;
-      --leather:#2B1B12;
-      --leather-2:#19110C;
-      --gold:#C89B3C;
-      --iron:#4A4A4A;
-      --blue:#224B8D;
-      --shadow:rgba(25,17,12,.42);
+      --bg: #120b07;
+      --panel: #24160d;
+      --panel-light: #332014;
+      --gold: #d8a640;
+      --gold-light: #f2d27a;
+      --red: #8f1d14;
+      --text: #f6ead2;
+      --muted: #c8b28a;
+      --border: #6e4a1e;
+      --shadow: rgba(0, 0, 0, 0.45);
     }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      margin:0;
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
       background:
-        radial-gradient(circle at 20% 0%, rgba(200,155,60,.26), transparent 30%),
-        radial-gradient(circle at 90% 10%, rgba(122,16,16,.28), transparent 28%),
-        linear-gradient(135deg, #160d08 0%, #2b1b12 48%, #100905 100%);
-      color: var(--leather);
-      font-family: Georgia, 'Times New Roman', serif;
-      line-height: 1.48;
+        radial-gradient(circle at top, rgba(216, 166, 64, 0.16), transparent 34%),
+        linear-gradient(180deg, #1c0f08 0%, #090604 100%);
     }
+
     .page {
+      width: 100%;
       max-width: none;
-      margin: 0 auto;
-      padding: 28px 18px 56px;
+      margin: 0;
+      padding: 24px;
     }
+
     .hero {
-      position: relative;
-      overflow: hidden;
-      border: 3px solid var(--gold);
-      border-radius: 22px;
+      border: 2px solid var(--border);
       background:
-        linear-gradient(180deg, rgba(122,16,16,.94), rgba(43,27,18,.96)),
-        radial-gradient(circle, rgba(255,246,216,.2), transparent 60%);
-      color: var(--bone);
-      box-shadow: 0 18px 40px var(--shadow);
-      padding: 42px 28px;
+        linear-gradient(135deg, rgba(143, 29, 20, 0.35), rgba(36, 22, 13, 0.97)),
+        var(--panel);
+      border-radius: 20px;
+      padding: 32px 24px;
+      box-shadow: 0 20px 60px var(--shadow);
       text-align: center;
+      margin-bottom: 22px;
     }
-    .hero:before, .hero:after {
-      content:"";
-      position:absolute;
-      inset:14px;
-      border:1px solid rgba(200,155,60,.65);
-      border-radius:16px;
-      pointer-events:none;
-    }
+
     .hero h1 {
-      margin: 0 0 10px;
-      font-size: clamp(2.2rem, 6vw, 4.5rem);
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      text-shadow: 0 4px 0 rgba(0,0,0,.25);
+      margin: 0;
+      font-size: clamp(34px, 5vw, 64px);
+      color: var(--gold-light);
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.85);
     }
-    .hero .subtitle {
-      color: var(--gold);
-      font-size: clamp(1.05rem, 2vw, 1.45rem);
-      font-weight: 700;
-      margin-bottom: 16px;
+
+    .hero p {
+      margin: 12px auto 0;
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 21px);
+      max-width: 980px;
+      line-height: 1.45;
     }
-    .hero .meta {
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:22px;
-    }
-    .chip {
-      border:1px solid rgba(255,246,216,.45);
-      background: rgba(0,0,0,.22);
-      border-radius:999px;
-      padding:8px 14px;
-      color: var(--bone);
-      font-weight:700;
-    }
-    .notice {
-      margin: 22px auto 26px;
-      padding: 16px 18px;
-      border: 2px solid var(--leather);
-      border-radius: 16px;
-      background: var(--bone);
-      box-shadow: 0 10px 24px var(--shadow);
-    }
-    .notice strong { color: var(--horde-red); }
-    nav {
+
+    .nav {
       position: sticky;
       top: 0;
       z-index: 20;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      justify-content:center;
-      margin: 22px 0 28px;
-      padding: 12px 8px;
-      background: rgba(25,17,12,.82);
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(200,155,60,.5);
-      border-radius: 999px;
-      box-shadow: 0 8px 22px rgba(0,0,0,.22);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      padding: 12px;
+      margin-bottom: 20px;
+      background: rgba(18, 11, 7, 0.88);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(216, 166, 64, 0.24);
+      border-radius: 16px;
     }
-    nav a {
-      text-decoration:none;
-      background: var(--leather);
-      color: var(--bone);
-      border:1px solid var(--gold);
+
+    .nav button {
+      background: linear-gradient(180deg, var(--gold-light), var(--gold));
+      color: #271507;
+      border: 1px solid #7c571d;
+      padding: 10px 16px;
       border-radius: 999px;
-      padding: 10px 14px;
-      font-weight: 700;
+      cursor: pointer;
+      font-weight: bold;
+      font-family: Georgia, "Times New Roman", serif;
+      box-shadow: 0 5px 14px rgba(0,0,0,0.25);
     }
-    nav a:hover { background: var(--horde-red); }
-    .tier {
-      margin: 34px 0 42px;
-      padding: 22px;
-      border: 2px solid var(--gold);
-      border-radius: 22px;
+
+    .nav button:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    .tier-section {
+      margin: 0 0 22px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      background: rgba(36, 22, 13, 0.88);
+      box-shadow: 0 16px 34px rgba(0,0,0,0.32);
+      scroll-margin-top: 92px;
+    }
+
+    .tier-header {
+      width: 100%;
+      border: 0;
       background:
-        linear-gradient(180deg, rgba(243,227,188,.96), rgba(255,246,216,.94)),
-        repeating-linear-gradient(45deg, rgba(43,27,18,.05) 0 6px, transparent 6px 12px);
-      box-shadow: 0 16px 38px var(--shadow);
+        linear-gradient(90deg, rgba(143, 29, 20, 0.65), rgba(51, 32, 20, 0.95)),
+        var(--panel-light);
+      color: var(--gold-light);
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 14px;
+      align-items: center;
+      text-align: left;
+      padding: 18px 20px;
+      cursor: pointer;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      font-weight: bold;
     }
-    .tier h2 {
-      margin: 0 0 18px;
-      color: var(--horde-red);
-      font-size: clamp(1.55rem, 3vw, 2.25rem);
-      border-bottom: 2px solid rgba(43,27,18,.26);
-      padding-bottom: 10px;
+
+    .tier-header span:nth-child(2) {
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: normal;
     }
-    .tier summary {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      cursor:pointer;
-      list-style:none;
-      user-select:none;
+
+    .chevron {
+      color: var(--gold-light);
+      font-size: 26px;
+      text-align: right;
     }
-    .tier summary::-webkit-details-marker { display:none; }
-    .tier summary h2 {
-      margin:0;
-      flex:1;
+
+    .tier-content {
+      padding: 18px;
+      display: block;
     }
-    .toggle-label {
-      background: var(--leather);
-      color: var(--bone);
-      border: 1px solid var(--gold);
-      border-radius: 999px;
-      padding: 7px 12px;
-      font-size: .82rem;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-    .tier[open] .toggle-label::before { content: "− Hide Section"; }
-    .tier:not([open]) .toggle-label::before { content: "+ Show Section"; }
-    .tier:not([open]) {
-      padding-bottom: 22px;
-    }
+
     .challenge-grid {
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
       gap: 16px;
     }
+
     .challenge-card {
-      background: var(--bone);
-      border: 2px solid var(--leather);
+      min-height: 190px;
+      border: 1px solid rgba(216, 166, 64, 0.38);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.035), rgba(0,0,0,0.18)),
+        var(--panel);
       border-radius: 16px;
       padding: 16px;
-      box-shadow: 0 8px 18px rgba(25,17,12,.20);
-      min-height: 190px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.28);
     }
-    .challenge-card[data-points="20"] { border-color: var(--blue); }
-    .challenge-card[data-points="35"] { border-color: var(--fel-green); }
-    .challenge-card[data-points="50"] { border-color: var(--horde-red); box-shadow: 0 0 0 2px rgba(200,155,60,.35), 0 10px 22px rgba(25,17,12,.24); }
+
     .challenge-top {
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      border-bottom: 1px solid rgba(43,27,18,.18);
-      padding-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
       margin-bottom: 10px;
     }
-    h3 {
-      margin:0;
-      color: var(--leather);
-      font-size: 1.08rem;
-      line-height:1.2;
+
+    .challenge-number {
+      color: var(--muted);
+      font-weight: bold;
+      letter-spacing: 0.06em;
     }
-    .badges {
-      display:flex;
-      flex-direction:column;
-      align-items:flex-end;
-      gap:5px;
-      flex:0 0 auto;
-    }
-    .points, .type {
+
+    .points {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 10px;
       border-radius: 999px;
-      padding: 4px 9px;
-      font-size: .78rem;
+      color: #251507;
+      background: linear-gradient(180deg, var(--gold-light), var(--gold));
+      font-weight: bold;
+      font-size: 14px;
       white-space: nowrap;
-      font-weight: 700;
     }
-    .points { background: var(--horde-red); color: var(--bone); }
-    .type { background: rgba(43,27,18,.12); color: var(--leather); }
-    p { margin: 8px 0; }
-    .label {
-      color: var(--horde-red);
-      font-weight: 800;
-      text-transform: uppercase;
-      font-size:.78rem;
-      letter-spacing:.04em;
+
+    .challenge-card h3 {
+      margin: 0 0 10px;
+      color: var(--gold-light);
+      font-size: 22px;
+      line-height: 1.2;
     }
-    em { color:#3d2618; }
+
+    .challenge-card p {
+      margin: 0;
+      color: var(--text);
+      line-height: 1.48;
+      font-size: 16px;
+    }
+
     .footer {
-      text-align:center;
-      color: var(--bone);
-      margin-top: 36px;
-      opacity: .9;
-      font-weight:700;
+      margin: 24px 0 0;
+      padding: 18px;
+      color: var(--muted);
+      text-align: center;
+      border-top: 1px solid rgba(216, 166, 64, 0.24);
     }
-    @media print {
-      body { background: var(--parchment); }
-      .page { max-width:none; padding:0; }
-      .hero, .tier, .notice { box-shadow:none; break-inside:avoid; }
-      nav { display:none; }
-      .challenge-card { break-inside:avoid; }
+
+    @media (max-width: 760px) {
+      .page {
+        padding: 14px;
+      }
+
+      .tier-header {
+        grid-template-columns: 1fr auto;
+      }
+
+      .tier-header span:nth-child(2) {
+        grid-column: 1 / -1;
+      }
+
+      .challenge-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
   <main class="page">
-    <header class="hero">
+    <section class="hero">
       <h1>Vindictus Scavenger Hunt</h1>
-      <div class="subtitle">Player Clue List</div>
-      <p>Teams of 3 • TBC Classic Era • Nightslayer PvP</p>
-      <div class="meta">
-        <span class="chip">90 Minutes</span>
-        <span class="chip">Start: Shattrath</span>
-        <span class="chip">End: Shattrath</span>
-        <span class="chip">Wednesday 5/13 • 6 PM Server</span>
-      </div>
-    </header>
+      <p>Player clue list • Teams of 5 • Complete as many challenges as possible before time runs out.</p>
+    </section>
 
-    <div class="notice">
-      <strong>Reminder:</strong> Some challenges are direct. Some are clues. Some are just bad ideas. Submit screenshots in your team Discord channel and trade in required items at the end. Each challenge counts once per team.
-    </div>
-
-    <nav>
-      <a href="#easy">Easy</a>
-      <a href="#medium">Medium</a>
-      <a href="#hard">Hard</a>
-      <a href="#elite">Elite</a>
-      <a href="#legendary">Legendary</a>
+    <nav class="nav" aria-label="Difficulty navigation">
+      <button onclick="jumpToSection('easy')">Easy</button>
+      <button onclick="jumpToSection('medium')">Medium</button>
+      <button onclick="jumpToSection('hard')">Hard</button>
+      <button onclick="jumpToSection('elite')">Elite</button>
+      <button onclick="jumpToSection('legendary')">Legendary</button>
+      <button onclick="expandAll()">Expand All</button>
+      <button onclick="collapseAll()">Collapse All</button>
     </nav>
 
-    <details id="easy" class="tier" open>
-      <summary><h2>Easy Challenges — 5 Points Each</h2><span class="toggle-label" aria-hidden="true"></span></summary>
-      <div class="challenge-grid"><article class="challenge-card" data-points="5">
-          <div class="challenge-top">
-            <h3>1. Shattrath Starting Line</h3>
-            <div class="badges"><span class="points">5 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Take a screenshot on the central platform in Shattrath before leaving.</p><p><span class="label">Proof:</span> Screenshot.</p>
-        </article><article class="challenge-card" data-points="5">
-          <div class="challenge-top">
-            <h3>2. Barrens Zhevra Check</h3>
-            <div class="badges"><span class="points">5 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Kill a zhevra in The Barrens.</p><p><span class="label">Proof:</span> Screenshot of corpse, combat log, or loot window.</p>
-        </article><article class="challenge-card" data-points="5">
-          <div class="challenge-top">
-            <h3>3. Vendor Trash Champion</h3>
-            <div class="badges"><span class="points">5 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Turn in one gray-quality item looted during the event.</p><p><span class="label">Proof:</span> Item trade-in.</p>
-        </article><article class="challenge-card" data-points="5">
-          <div class="challenge-top">
-            <h3>4. The Floor Inspection Committee</h3>
-            <div class="badges"><span class="points">5 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Prove one team member has personally inspected the floor of Azeroth or Outland.</p><p><span class="label">Objective:</span> One team member must die somewhere in the open world.</p><p><span class="label">Proof:</span> Screenshot of corpse.</p>
-        </article><article class="challenge-card" data-points="5">
-          <div class="challenge-top">
-            <h3>5. Mushroom Tourist</h3>
-            <div class="badges"><span class="points">5 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Take a screenshot in Zangarmarsh with giant mushrooms visible.</p><p><span class="label">Proof:</span> Screenshot.</p>
-        </article><article class="challenge-card" data-points="5">
-          <div class="challenge-top">
-            <h3>6. Durotar Pest Control</h3>
-            <div class="badges"><span class="points">5 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Kill any scorpid, boar, or raptor in Durotar.</p><p><span class="label">Proof:</span> Screenshot of corpse, combat log, or loot window.</p>
-        </article><article class="challenge-card" data-points="5">
-          <div class="challenge-top">
-            <h3>7. Tiny Dragon Problem</h3>
-            <div class="badges"><span class="points">5 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Kill any whelp or dragonkin under level 30. Suggested areas include Redridge Mountains, Wetlands, or Dustwallow Marsh.</p><p><span class="label">Proof:</span> Screenshot.</p>
-        </article><article class="challenge-card" data-points="5">
-          <div class="challenge-top">
-            <h3>8. Weird Little Guy</h3>
-            <div class="badges"><span class="points">5 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Take a screenshot with any murloc, sporeling, ethereal, goblin, or gnome.</p><p><span class="label">Proof:</span> Screenshot.</p>
-        </article><article class="challenge-card" data-points="5">
-          <div class="challenge-top">
-            <h3>9. Spider Snack Run</h3>
-            <div class="badges"><span class="points">5 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Turn in one spider-related drop such as Crisp Spider Meat, Crunchy Spider Leg, or another spider drop looted during the event.</p><p><span class="label">Proof:</span> Item trade-in.</p>
-        </article><article class="challenge-card" data-points="5">
-          <div class="challenge-top">
-            <h3>10. The Fel Vacation Photo</h3>
-            <div class="badges"><span class="points">5 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>Where the sky is angry and everything glows green, take a souvenir before the demons notice.</em></p><p><span class="label">Objective:</span> Take a screenshot in Hellfire Peninsula with fel fire, demons, or the Dark Portal visible.</p><p><span class="label">Proof:</span> Screenshot.</p>
-        </article><article class="challenge-card" data-points="5">
-          <div class="challenge-top">
-            <h3>11. Bird Watching Gone Wrong</h3>
-            <div class="badges"><span class="points">5 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Kill any plainstrider, vulture, carrion bird, owl, swoop, or similar bird-type beast.</p><p><span class="label">Proof:</span> Screenshot.</p>
-        </article><article class="challenge-card" data-points="5">
-          <div class="challenge-top">
-            <h3>12. Goblin Snack Run</h3>
-            <div class="badges"><span class="points">5 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Purchase any food or drink item from a goblin vendor and turn it in. Suggested areas: Ratchet, Booty Bay, Gadgetzan, Everlook, or Area 52.</p><p><span class="label">Proof:</span> Item trade-in.</p>
-        </article><article class="challenge-card" data-points="5">
-          <div class="challenge-top">
-            <h3>13. The Cow Level</h3>
-            <div class="badges"><span class="points">5 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Take a screenshot in Thunder Bluff with a tauren NPC visible.</p><p><span class="label">Proof:</span> Screenshot.</p>
-        </article><article class="challenge-card" data-points="5">
-          <div class="challenge-top">
-            <h3>14. Silverpine Bat Problem</h3>
-            <div class="badges"><span class="points">5 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Kill a bat or worg in Silverpine Forest.</p><p><span class="label">Proof:</span> Screenshot.</p>
-        </article><article class="challenge-card" data-points="5">
-          <div class="challenge-top">
-            <h3>15. Guild Brand Representation</h3>
-            <div class="badges"><span class="points">5 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Take a screenshot outside Shattrath with your guild tag visible.</p><p><span class="label">Proof:</span> Screenshot.</p>
-        </article></div>
-    </details>
-    <details id="medium" class="tier" open>
-      <summary><h2>Medium Challenges — 10 Points Each</h2><span class="toggle-label" aria-hidden="true"></span></summary>
-      <div class="challenge-grid"><article class="challenge-card" data-points="10">
-          <div class="challenge-top">
-            <h3>16. Full Team Dance Break</h3>
-            <div class="badges"><span class="points">10 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> All 3 team members must use /dance in any Horde city.</p><p><span class="label">Proof:</span> Screenshot with all 3 visible.</p>
-        </article><article class="challenge-card" data-points="10">
-          <div class="challenge-top">
-            <h3>17. Murloc Diplomacy Failed</h3>
-            <div class="badges"><span class="points">10 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Kill a murloc in one of these locations: Echo Isles, Silverpine coast, Westfall coast, or Redridge lake.</p><p><span class="label">Proof:</span> Screenshot of corpse, combat log, or loot window.</p>
-        </article><article class="challenge-card" data-points="10">
-          <div class="challenge-top">
-            <h3>18. The Pirate Postcard</h3>
-            <div class="badges"><span class="points">10 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>Find the neutral port where everyone pretends they are not about to start a fight.</em></p><p><span class="label">Objective:</span> Take a screenshot in or near Booty Bay.</p><p><span class="label">Proof:</span> Screenshot.</p>
-        </article><article class="challenge-card" data-points="10">
-          <div class="challenge-top">
-            <h3>19. Bring Back Something Gross</h3>
-            <div class="badges"><span class="points">10 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Turn in one item looted from a spider, murloc, wolf, ooze, carrion bird, raptor, or demon.</p><p><span class="label">Proof:</span> Item trade-in.</p>
-        </article><article class="challenge-card" data-points="10">
-          <div class="challenge-top">
-            <h3>20. Zhevra Tax</h3>
-            <div class="badges"><span class="points">10 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Turn in one Zhevra Hoof from The Barrens.</p><p><span class="label">Proof:</span> Item trade-in. Screenshot in The Barrens recommended.</p>
-        </article><article class="challenge-card" data-points="10">
-          <div class="challenge-top">
-            <h3>21. The Town That Hates Horde</h3>
-            <div class="badges"><span class="points">10 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>Visit the human farmlands where red masks and bad decisions live.</em></p><p><span class="label">Objective:</span> Kill a Defias mob in Westfall, preferably near Moonbrook or the Deadmines entrance.</p><p><span class="label">Proof:</span> Screenshot of corpse, combat log, or loot window.</p>
-        </article><article class="challenge-card" data-points="10">
-          <div class="challenge-top">
-            <h3>22. The Haunted Forest Vacation</h3>
-            <div class="badges"><span class="points">10 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>Visit the forest where every tree looks guilty and every road leads to regret.</em></p><p><span class="label">Objective:</span> Take a screenshot in Duskwood.</p><p><span class="label">Proof:</span> Screenshot.</p>
-        </article><article class="challenge-card" data-points="10">
-          <div class="challenge-top">
-            <h3>23. The Worst Picnic Spot</h3>
-            <div class="badges"><span class="points">10 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Take a screenshot of one team member sitting down in a clearly dangerous outdoor area.</p><p><span class="label">Proof:</span> Screenshot.</p>
-        </article><article class="challenge-card" data-points="10">
-          <div class="challenge-top">
-            <h3>24. The Swamp Smells Like Victory</h3>
-            <div class="badges"><span class="points">10 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Kill a crocolisk, murloc, spider, or ooze in Swamp of Sorrows.</p><p><span class="label">Proof:</span> Screenshot.</p>
-        </article><article class="challenge-card" data-points="10">
-          <div class="challenge-top">
-            <h3>25. Tanaris Tourist Trap</h3>
-            <div class="badges"><span class="points">10 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Take a screenshot in Gadgetzan.</p><p><span class="label">Proof:</span> Screenshot.</p>
-        </article><article class="challenge-card" data-points="10">
-          <div class="challenge-top">
-            <h3>26. Ashenvale Logging Dispute</h3>
-            <div class="badges"><span class="points">10 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Kill any hostile mob near Astranaar, Warsong Lumber Camp, or the road between them.</p><p><span class="label">Proof:</span> Screenshot.</p>
-        </article><article class="challenge-card" data-points="10">
-          <div class="challenge-top">
-            <h3>27. Hillsbrad Bar Fight</h3>
-            <div class="badges"><span class="points">10 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Kill a mob near Southshore, Tarren Mill, or the road between them.</p><p><span class="label">Proof:</span> Screenshot.</p>
-        </article><article class="challenge-card" data-points="10">
-          <div class="challenge-top">
-            <h3>28. Nagrand Postcard</h3>
-            <div class="badges"><span class="points">10 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Take a screenshot in Nagrand with floating land, open plains, or a large landmark visible.</p><p><span class="label">Proof:</span> Screenshot.</p>
-        </article><article class="challenge-card" data-points="10">
-          <div class="challenge-top">
-            <h3>29. Blade&#x27;s Edge Bad Idea</h3>
-            <div class="badges"><span class="points">10 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Take a screenshot on a bridge, spike, ramp, or high ledge in Blade&#x27;s Edge Mountains.</p><p><span class="label">Proof:</span> Screenshot.</p>
-        </article><article class="challenge-card" data-points="10">
-          <div class="challenge-top">
-            <h3>30. The Stone Road Riddle</h3>
-            <div class="badges"><span class="points">10 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>Between two towns that hate each other, the road remembers every corpse run. Spill blood somewhere along the feud.</em></p><p><span class="label">Objective:</span> Kill any mob on or near the road between Southshore and Tarren Mill in Hillsbrad Foothills.</p><p><span class="label">Proof:</span> Screenshot.</p>
-        </article></div>
-    </details>
-    <details id="hard" class="tier" open>
-      <summary><h2>Hard Challenges — 20 Points Each</h2><span class="toggle-label" aria-hidden="true"></span></summary>
-      <div class="challenge-grid"><article class="challenge-card" data-points="20">
-          <div class="challenge-top">
-            <h3>31. Stormwind Greeting Card</h3>
-            <div class="badges"><span class="points">20 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>Seek the lion&#x27;s stone mouth at the end of the forest road. Stand where blue walls dare red banners to come closer.</em></p><p><span class="label">Proof:</span> Screenshot with the landmark visible.</p>
-        </article><article class="challenge-card" data-points="20">
-          <div class="challenge-top">
-            <h3>32. Ironforge Regret</h3>
-            <div class="badges"><span class="points">20 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>Find the frozen mountain wound where smoke, steel, and short tempers pour out of the snow.</em></p><p><span class="label">Proof:</span> Screenshot with the entrance or gates visible.</p>
-        </article><article class="challenge-card" data-points="20">
-          <div class="challenge-top">
-            <h3>33. The Space Goat Mistake</h3>
-            <div class="badges"><span class="points">20 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>Cross the sea to the blue crash, where crystals hum and the draenei pretend this landing was intentional.</em></p><p><span class="label">Proof:</span> Screenshot with a recognizable landmark, town, or entrance visible.</p>
-        </article><article class="challenge-card" data-points="20">
-          <div class="challenge-top">
-            <h3>34. Scarlet Fashion Disaster</h3>
-            <div class="badges"><span class="points">20 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>Find the zealots who made red their religion and uniforms their personality. Spill Scarlet blood outside their holy walls.</em></p><p><span class="label">Proof:</span> Screenshot of corpse, combat log, or loot window.</p>
-        </article><article class="challenge-card" data-points="20">
-          <div class="challenge-top">
-            <h3>35. Deadmines Gift Shop</h3>
-            <div class="badges"><span class="points">20 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>Go to the human mining town where low-level heroes learned fear. Kill something near the workers&#x27; old entrance and bring back a souvenir.</em></p><p><span class="label">Proof:</span> Screenshot plus item trade-in.</p>
-        </article><article class="challenge-card" data-points="20">
-          <div class="challenge-top">
-            <h3>36. Redridge Regret</h3>
-            <div class="badges"><span class="points">20 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>Find the human lake town guarded by bridges, gnolls, and bad ideas. Leave proof that the Horde passed through.</em></p><p><span class="label">Proof:</span> Kill screenshot with the town, bridge, or zone clearly verifiable.</p>
-        </article><article class="challenge-card" data-points="20">
-          <div class="challenge-top">
-            <h3>37. Darkshore Bad Vacation</h3>
-            <div class="badges"><span class="points">20 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>Sail to the long purple coast where night elves sulk in the rain. Hunt nearby, then take your worst vacation photo.</em></p><p><span class="label">Proof:</span> Kill screenshot with the town, coast, or zone clearly verifiable.</p>
-        </article><article class="challenge-card" data-points="20">
-          <div class="challenge-top">
-            <h3>38. Shadowfang Souvenir</h3>
-            <div class="badges"><span class="points">20 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>Return to the cursed keep above the forest, where worgen problems begin before the dungeon even starts.</em></p><p><span class="label">Proof:</span> Screenshot of a nearby kill plus the entrance or courtyard area.</p>
-        </article><article class="challenge-card" data-points="20">
-          <div class="challenge-top">
-            <h3>39. Full Team Corpse Portrait</h3>
-            <div class="badges"><span class="points">20 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> All 3 team members must be dead in the same general location. Make it dramatic, embarrassing, or both.</p><p><span class="label">Proof:</span> Screenshot showing all 3 corpses or dead player frames/characters.</p>
-        </article><article class="challenge-card" data-points="20">
-          <div class="challenge-top">
-            <h3>40. The Old Mine, Bad Memories</h3>
-            <div class="badges"><span class="points">20 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>The Brotherhood hides behind moonlit ruins and broken farm roads. Find the door that swallowed a thousand first parties.</em></p><p><span class="label">Proof:</span> Screenshot with the entrance area clearly visible.</p>
-        </article></div>
-    </details>
-    <details id="elite" class="tier" open>
-      <summary><h2>Elite Challenges — 35 Points Each</h2><span class="toggle-label" aria-hidden="true"></span></summary>
-      <div class="challenge-grid"><article class="challenge-card" data-points="35">
-          <div class="challenge-top">
-            <h3>41. Eastern Kingdoms Bad Route</h3>
-            <div class="badges"><span class="points">35 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>Trace the Alliance disaster triangle: the farms of red masks, the forest of guilty trees, and the lake town that keeps pretending it is safe. Spill blood in all three.</em></p><p><span class="label">Proof:</span> Three kill screenshots, one per zone.</p>
-        </article><article class="challenge-card" data-points="35">
-          <div class="challenge-top">
-            <h3>42. The Neutral City Lie</h3>
-            <div class="badges"><span class="points">35 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>Visit two goblin cities that sell neutrality by the bottle: one below jungle cliffs, one baked into the desert.</em></p><p><span class="label">Proof:</span> Two screenshots.</p>
-        </article><article class="challenge-card" data-points="35">
-          <div class="challenge-top">
-            <h3>43. The Bad Decision Relay</h3>
-            <div class="badges"><span class="points">35 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Submit screenshots from three different zones, with each screenshot taken by a different team member.</p><p><span class="label">Proof:</span> Three screenshots, one per teammate.</p>
-        </article><article class="challenge-card" data-points="35">
-          <div class="challenge-top">
-            <h3>44. Low-Level Dungeon Entrance Tour</h3>
-            <div class="badges"><span class="points">35 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>Find two old doors where low-level adventurers first learned that caves, cultists, mines, and castles are terrible. At one door, leave a corpse that is not yours.</em></p><p><span class="label">Proof:</span> Two entrance screenshots plus one nearby kill screenshot.</p>
-        </article><article class="challenge-card" data-points="35">
-          <div class="challenge-top">
-            <h3>45. Kalimdor Regret Route</h3>
-            <div class="badges"><span class="points">35 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>Follow the elf-shaped mistake north: the rainy shore, the contested forest, then the island or tree where Horde travel agents refuse to advertise.</em></p><p><span class="label">Proof:</span> Three screenshots.</p>
-        </article><article class="challenge-card" data-points="35">
-          <div class="challenge-top">
-            <h3>46. Vendor Safari</h3>
-            <div class="badges"><span class="points">35 pts</span></div>
-          </div>
-          <p><span class="label">Task:</span> Turn in three different vendor-purchased items from three different zones. Auction House purchases do not count.</p><p><span class="label">Proof:</span> Three item trade-ins.</p>
-        </article><article class="challenge-card" data-points="35">
-          <div class="challenge-top">
-            <h3>47. The Contested Blood Trail</h3>
-            <div class="badges"><span class="points">35 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>One kill beneath jungle canopies, one between rival towns, and one in the broken kingdom where walls and banners still argue.</em></p><p><span class="label">Proof:</span> Three kill screenshots.</p>
-        </article></div>
-    </details>
-    <details id="legendary" class="tier" open>
-      <summary><h2>Legendary Challenges — 50 Points Each</h2><span class="toggle-label" aria-hidden="true"></span></summary>
-      <div class="challenge-grid"><article class="challenge-card" data-points="50">
-          <div class="challenge-top">
-            <h3>48. Capital City Crimes</h3>
-            <div class="badges"><span class="points">50 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>Three fools must stand at the threshold of a kingdom that would happily delete them: lion, forge, tree, or crystal.</em></p><p><span class="label">Proof:</span> Screenshot with all 3 team members visible at the chosen entrance area.</p>
-        </article><article class="challenge-card" data-points="50">
-          <div class="challenge-top">
-            <h3>49. The World Tour of Regret</h3>
-            <div class="badges"><span class="points">50 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>Bring back six postcards from three worlds of trouble: two from the shattered sky, two from old Kalimdor, and two from the Eastern lands of bad decisions.</em></p><p><span class="label">Proof:</span> Six screenshots from six unique zones.</p>
-        </article><article class="challenge-card" data-points="50">
-          <div class="challenge-top">
-            <h3>50. The Hall of Terrible Choices</h3>
-            <div class="badges"><span class="points">50 pts</span></div>
-          </div>
-          <p><span class="label">Clue:</span> <em>Three living Horde members. One image. A place where the map, the guards, or common sense all agree you should not be.</em></p><p><span class="label">Proof:</span> Screenshot with all 3 visible and alive in a dangerous enemy or contested location.</p>
-        </article></div>
-    </details>
+    
+    <section class="tier-section" id="easy">
+      <button class="tier-header" onclick="toggleSection('easy')">
+        <span>Easy Challenges</span>
+        <span>5 pts each • 15 challenges</span>
+        <span class="chevron" id="easy-chevron">−</span>
+      </button>
+      <div class="tier-content" id="easy-content">
+        <div class="challenge-grid">
+          
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#1</span>
+          <span class="points">5 pts</span>
+        </div>
+        <h3>Shattrath Starting Line</h3>
+        <p>Take a screenshot on the central platform in Shattrath before leaving.</p>
+      </article>
+    
 
-    <div class="footer">Lok’tar. Screenshot clearly. Return to Shattrath on time.</div>
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#2</span>
+          <span class="points">5 pts</span>
+        </div>
+        <h3>Barrens Zhevra Check</h3>
+        <p>Kill a zhevra in The Barrens.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#3</span>
+          <span class="points">5 pts</span>
+        </div>
+        <h3>Vendor Trash Champion</h3>
+        <p>Turn in one gray-quality item looted during the event.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#4</span>
+          <span class="points">5 pts</span>
+        </div>
+        <h3>The Floor Inspection Committee</h3>
+        <p>One team member must die somewhere in the open world.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#5</span>
+          <span class="points">5 pts</span>
+        </div>
+        <h3>Mushroom Tourist</h3>
+        <p>Where the mushrooms are taller than your raid leader’s ego, take a postcard before the spores get you.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#6</span>
+          <span class="points">5 pts</span>
+        </div>
+        <h3>Goblin Snack Run</h3>
+        <p>Find a merchant who would sell his own grandmother if the margins were good. Bring back something edible or drinkable.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#7</span>
+          <span class="points">5 pts</span>
+        </div>
+        <h3>Orgrimmar Tourist</h3>
+        <p>Take a screenshot outside the front gates of Orgrimmar.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#8</span>
+          <span class="points">5 pts</span>
+        </div>
+        <h3>Bird Watching</h3>
+        <p>Take a screenshot near any flight master.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#9</span>
+          <span class="points">5 pts</span>
+        </div>
+        <h3>Durotar Pest Control</h3>
+        <p>Kill any scorpid, boar, or raptor in Durotar.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#10</span>
+          <span class="points">5 pts</span>
+        </div>
+        <h3>Spider Snack Run</h3>
+        <p>Find something with too many legs and not enough manners. Bring back a snack from its corpse.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#11</span>
+          <span class="points">5 pts</span>
+        </div>
+        <h3>Undercity Vacation</h3>
+        <p>Take a screenshot near the Undercity bank or trade quarter.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#12</span>
+          <span class="points">5 pts</span>
+        </div>
+        <h3>The Dark Portal Postcard</h3>
+        <p>Find the doorway where bad decisions became an expansion.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#13</span>
+          <span class="points">5 pts</span>
+        </div>
+        <h3>Mulgore Nature Disrespect</h3>
+        <p>Kill a plainstrider, wolf, or swoop in Mulgore.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#14</span>
+          <span class="points">5 pts</span>
+        </div>
+        <h3>Weird Little Guy</h3>
+        <p>Take a screenshot with any murloc, sporeling, ethereal, goblin, or gnome.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#15</span>
+          <span class="points">5 pts</span>
+        </div>
+        <h3>Guild Brand Representation</h3>
+        <p>Take a screenshot with your guild tag visible somewhere outside Shattrath.</p>
+      </article>
+    
+        </div>
+      </div>
+    </section>
+    
+    <section class="tier-section" id="medium">
+      <button class="tier-header" onclick="toggleSection('medium')">
+        <span>Medium Challenges</span>
+        <span>10 pts each • 15 challenges</span>
+        <span class="chevron" id="medium-chevron">−</span>
+      </button>
+      <div class="tier-content" id="medium-content">
+        <div class="challenge-grid">
+          
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#16</span>
+          <span class="points">10 pts</span>
+        </div>
+        <h3>Murloc Diplomacy Failed</h3>
+        <p>Approach the fish people. Attempt diplomacy. When that fails, do what the Horde does best.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#17</span>
+          <span class="points">10 pts</span>
+        </div>
+        <h3>The Pirate Postcard</h3>
+        <p>Find the neutral port where everyone pretends they are not about to start a fight.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#18</span>
+          <span class="points">10 pts</span>
+        </div>
+        <h3>Bring Back Something Gross</h3>
+        <p>Bring back one item looted from something gross, bitey, slimy, feathery, scaly, or demonic.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#19</span>
+          <span class="points">10 pts</span>
+        </div>
+        <h3>Full Team Dance Break</h3>
+        <p>All 5 team members must /dance in any Horde city.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#20</span>
+          <span class="points">10 pts</span>
+        </div>
+        <h3>The Duskwood Monster Hunt</h3>
+        <p>Visit the forest where every tree looks guilty and every road leads to regret.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#21</span>
+          <span class="points">10 pts</span>
+        </div>
+        <h3>Westfall Witness Protection</h3>
+        <p>Cross into the fields of poorly guarded farms and angry humans. Find the brotherhood in red and make a withdrawal.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#22</span>
+          <span class="points">10 pts</span>
+        </div>
+        <h3>Hillsbrad Bar Fight</h3>
+        <p>Go to the place where Southshore and Tarren Mill have never learned to be normal.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#23</span>
+          <span class="points">10 pts</span>
+        </div>
+        <h3>Tanaris Tourist Trap</h3>
+        <p>Take a screenshot in the desert city where neutrality is mostly a suggestion.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#24</span>
+          <span class="points">10 pts</span>
+        </div>
+        <h3>Nagrand Postcard</h3>
+        <p>Find the floating land and open skies where every screenshot looks like a loading screen.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#25</span>
+          <span class="points">10 pts</span>
+        </div>
+        <h3>Blade’s Edge Bad Idea</h3>
+        <p>Take a screenshot on a bridge, spike, ramp, or high ledge in Blade’s Edge Mountains.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#26</span>
+          <span class="points">10 pts</span>
+        </div>
+        <h3>Bring Back Cloth</h3>
+        <p>Turn in any stack of 5 cloth looted during the event.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#27</span>
+          <span class="points">10 pts</span>
+        </div>
+        <h3>Ashenvale Logging Dispute</h3>
+        <p>Find the forest where trees, elves, and lumber operations all have strong opinions.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#28</span>
+          <span class="points">10 pts</span>
+        </div>
+        <h3>Ooze There It Is</h3>
+        <p>Kill any ooze or slime and bring back one thing it should probably not have been carrying.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#29</span>
+          <span class="points">10 pts</span>
+        </div>
+        <h3>Demon Problem</h3>
+        <p>Kill any demon in the open world.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#30</span>
+          <span class="points">10 pts</span>
+        </div>
+        <h3>The Worst Picnic Spot</h3>
+        <p>Take a screenshot of one team member sitting in a clearly dangerous outdoor area.</p>
+      </article>
+    
+        </div>
+      </div>
+    </section>
+    
+    <section class="tier-section" id="hard">
+      <button class="tier-header" onclick="toggleSection('hard')">
+        <span>Hard Challenges</span>
+        <span>20 pts each • 10 challenges</span>
+        <span class="chevron" id="hard-chevron">−</span>
+      </button>
+      <div class="tier-content" id="hard-content">
+        <div class="challenge-grid">
+          
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#31</span>
+          <span class="points">20 pts</span>
+        </div>
+        <h3>Stormwind Greeting Card</h3>
+        <p>Stand before the stone mouth of the lion, where blue banners dare the Horde to knock.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#32</span>
+          <span class="points">20 pts</span>
+        </div>
+        <h3>Ironforge Regret</h3>
+        <p>Find the mountain furnace where the small folk built a kingdom into the cold.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#33</span>
+          <span class="points">20 pts</span>
+        </div>
+        <h3>The Space Goat Mistake</h3>
+        <p>Seek the broken jewel that fell from the sky and brought glowing strangers to the mist.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#34</span>
+          <span class="points">20 pts</span>
+        </div>
+        <h3>Scarlet Fashion Disaster</h3>
+        <p>Find the holy halls where red is not a color scheme — it is a diagnosis.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#35</span>
+          <span class="points">20 pts</span>
+        </div>
+        <h3>Deadmines Gift Shop</h3>
+        <p>Return to the old human mine where low-level heroes first learned that caves have politics.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#36</span>
+          <span class="points">20 pts</span>
+        </div>
+        <h3>Redridge Regret</h3>
+        <p>Go where the bridge watches the lake and the humans pretend the mountains protect them.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#37</span>
+          <span class="points">20 pts</span>
+        </div>
+        <h3>Wetlands Shipping Incident</h3>
+        <p>Find the soggy road that leads toward ships, dwarves, and bad Horde travel choices.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#38</span>
+          <span class="points">20 pts</span>
+        </div>
+        <h3>Darkshore Bad Vacation</h3>
+        <p>Travel to the long gray coast where purple banners, rain, and bad ideas gather.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#39</span>
+          <span class="points">20 pts</span>
+        </div>
+        <h3>Full Team Corpse Portrait</h3>
+        <p>All 5 team members must provide a single portrait of shared failure.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#40</span>
+          <span class="points">20 pts</span>
+        </div>
+        <h3>Outland Edge Case</h3>
+        <p>Find a place in Outland where one wrong step becomes a flight lesson.</p>
+      </article>
+    
+        </div>
+      </div>
+    </section>
+    
+    <section class="tier-section" id="elite">
+      <button class="tier-header" onclick="toggleSection('elite')">
+        <span>Elite Challenges</span>
+        <span>35 pts each • 7 challenges</span>
+        <span class="chevron" id="elite-chevron">−</span>
+      </button>
+      <div class="tier-content" id="elite-content">
+        <div class="challenge-grid">
+          
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#41</span>
+          <span class="points">35 pts</span>
+        </div>
+        <h3>Eastern Kingdoms Bad Route</h3>
+        <p>Three stops: the farms, the haunted woods, and the lake town. Leave proof of trouble in each.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#42</span>
+          <span class="points">35 pts</span>
+        </div>
+        <h3>The Neutral City Lie</h3>
+        <p>Visit two cities that claim neutrality, then prove everyone is lying by surviving the trip.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#43</span>
+          <span class="points">35 pts</span>
+        </div>
+        <h3>The Bad Decision Relay</h3>
+        <p>Five zones. Five screenshots. Spread the blame around.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#44</span>
+          <span class="points">35 pts</span>
+        </div>
+        <h3>Alliance Starter Zone Sampler</h3>
+        <p>Go where new Alliance heroes are born and remind the wildlife that the Horde visited.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#45</span>
+          <span class="points">35 pts</span>
+        </div>
+        <h3>Low-Level Dungeon Entrance Tour</h3>
+        <p>You do not need to clear the dungeon. Just prove you found the bad decisions waiting outside.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#46</span>
+          <span class="points">35 pts</span>
+        </div>
+        <h3>The Contested Blood Trail</h3>
+        <p>Trace the old world’s argument across jungle, foothills, and highlands.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#47</span>
+          <span class="points">35 pts</span>
+        </div>
+        <h3>Vendor Safari</h3>
+        <p>Bring back three different vendor-purchased items from three different zones.</p>
+      </article>
+    
+        </div>
+      </div>
+    </section>
+    
+    <section class="tier-section" id="legendary">
+      <button class="tier-header" onclick="toggleSection('legendary')">
+        <span>Legendary Challenges</span>
+        <span>50 pts each • 3 challenges</span>
+        <span class="chevron" id="legendary-chevron">−</span>
+      </button>
+      <div class="tier-content" id="legendary-content">
+        <div class="challenge-grid">
+          
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#48</span>
+          <span class="points">50 pts</span>
+        </div>
+        <h3>Capital City Crimes</h3>
+        <p>Five fools. One screenshot. A place where the guards absolutely do not want you.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#49</span>
+          <span class="points">50 pts</span>
+        </div>
+        <h3>The World Tour of Regret</h3>
+        <p>One team. Three lands. Six bad choices. The Horde did not authorize this vacation.</p>
+      </article>
+    
+
+      <article class="challenge-card">
+        <div class="challenge-top">
+          <span class="challenge-number">#50</span>
+          <span class="points">50 pts</span>
+        </div>
+        <h3>The Trophy Bag</h3>
+        <p>Bring back proof that you offended nature, civilization, and at least one questionable lifeform.</p>
+      </article>
+    
+        </div>
+      </div>
+    </section>
+    
+
+    <footer class="footer">
+      Vindictus Scavenger Hunt • Screenshots and item turn-ins are judged by officers.
+    </footer>
   </main>
-  <script>
-    document.querySelectorAll('nav a[href^="#"]').forEach((link) => {
-      link.addEventListener('click', (event) => {
-        const target = document.querySelector(link.getAttribute('href'));
-        if (!target) return;
-        event.preventDefault();
-        target.open = true;
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        history.replaceState(null, '', link.getAttribute('href'));
-      });
-    });
 
-    if (window.location.hash) {
-      const target = document.querySelector(window.location.hash);
-      if (target && target.tagName.toLowerCase() === 'details') {
-        target.open = true;
-        setTimeout(() => target.scrollIntoView({ block: 'start' }), 0);
-      }
+  <script>
+    const sectionIds = ['easy', 'medium', 'hard', 'elite', 'legendary'];
+
+    function toggleSection(id) {
+      const content = document.getElementById(id + '-content');
+      const chevron = document.getElementById(id + '-chevron');
+
+      if (!content || !chevron) return;
+
+      const isHidden = content.style.display === 'none';
+      content.style.display = isHidden ? 'block' : 'none';
+      chevron.textContent = isHidden ? '−' : '+';
+    }
+
+    function openSection(id) {
+      const content = document.getElementById(id + '-content');
+      const chevron = document.getElementById(id + '-chevron');
+
+      if (!content || !chevron) return;
+
+      content.style.display = 'block';
+      chevron.textContent = '−';
+    }
+
+    function jumpToSection(id) {
+      openSection(id);
+      const section = document.getElementById(id);
+      if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function expandAll() {
+      sectionIds.forEach(openSection);
+    }
+
+    function collapseAll() {
+      sectionIds.forEach(id => {
+        const content = document.getElementById(id + '-content');
+        const chevron = document.getElementById(id + '-chevron');
+
+        if (content) content.style.display = 'none';
+        if (chevron) chevron.textContent = '+';
+      });
     }
   </script>
-
 </body>
 </html>
