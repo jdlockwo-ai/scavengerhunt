@@ -96,7 +96,7 @@
   <script>
     // IMPORTANT: Replace this with your deployed Apps Script Web App URL.
     // Example: const DATA_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec?action=data';
-    const DATA_URL = 'https://script.google.com/macros/s/AKfycbxOJevLhtNOY6iTwDuGYH0MY2oobzodVT4XER1QSYGmafpF0YJr-tYtIG8gF2XhwLb5Dw/exec';
+    const DATA_URL = 'https://script.google.com/macros/s/AKfycbxOJevLhtNOY6iTwDuGYH0MY2oobzodVT4XER1QSYGmafpF0YJr-tYtIG8gF2XhwLb5Dw/exec?action=data';
 
     async function loadData() {
       const leaderboard = document.getElementById('leaderboard');
@@ -112,6 +112,12 @@
     }
 
     function renderTracker(data) {
+      if (!data || data.status === 'error') {
+        const message = data && data.message ? data.message : 'Unknown backend error.';
+        document.getElementById('leaderboard').innerHTML = '<div class="empty">Backend error: ' + escapeHtml(message) + '</div>';
+        return;
+      }
+      data.teams = data.teams || [];
       document.getElementById('teamCount').textContent = data.teams.length;
       document.getElementById('challengeCount').textContent = data.totalChallenges;
       document.getElementById('availablePoints').textContent = data.totalAvailablePoints;
